@@ -31,26 +31,7 @@ class _RegisterViewState extends State<RegisterView> {
 
  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Register"),
-      ),
-      body: FutureBuilder(
-        future: Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        ),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-            case ConnectionState.none:
-            case ConnectionState.active:
-              // Show a loading indicator while Firebase is initializing
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            case ConnectionState.done:
-              // Firebase initialization is complete, show the registration form
-              return Column(
+    return Column(
                 children: [
                   TextField(
                     controller: _email,
@@ -99,16 +80,6 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ],
               );
-            default:
-              // Handle any unexpected connection states
-              return const Center(
-                child: Text("Something went wrong"),
-              );
-          }
-        },
-      ),
-    );
   }
 }
-
 
